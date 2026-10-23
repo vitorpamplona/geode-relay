@@ -1,0 +1,30 @@
+#!/bin/bash
+
+GREEN='\033[0;32m'
+NO_COLOR='\033[0m'
+
+echo "*********************************************************"
+echo "Running git pre-push hook."
+echo "*********************************************************"
+echo ""
+echo "Java Version: "
+echo "$JAVA_HOME"
+echo "$(java -version)"
+echo "Running test... "
+
+# The same checks CI runs (.github/workflows/build.yml). -DsyncN shrinks
+# MirrorSyncThroughputTest's corpus the way CI does; see the comment there.
+./gradlew spotlessCheck :geode:test :relayBench:test -DsyncN=100000 --quiet
+
+status=$?
+
+if [ "$status" = 0 ] ; then
+    echo "All test passed."
+    exit 0
+else
+    echo "*********************************************************"
+    echo 1>&2 "Formatting or tests failed"
+    printf "Run ${GREEN}./gradlew spotlessApply :geode:test :relayBench:test${NO_COLOR} and fix what fails before pushing...\n"
+    echo "*********************************************************"
+    exit 1
+fi

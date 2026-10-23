@@ -1,0 +1,18 @@
+{
+  "description": "Push-boundary checks shared with Claude Code (.claude/settings.json). The scripts live in tools/agent-hooks/ and decide for themselves whether a call is a git push.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^Bash$|create_pull_request$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)/tools/agent-hooks/pre-push-spotless.sh\"",
+            "timeout": 180,
+            "statusMessage": "Checking Kotlin formatting before push"
+          }
+        ]
+      }
+    ]
+  }
+}

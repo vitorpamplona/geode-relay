@@ -1,0 +1,35 @@
+[versions]
+fourkoma = "1.2.0"
+junit = "4.13.2"
+kotlin = "2.4.21"
+kotlinxCoroutines = "1.11.0"
+kotlinxSerialization = "1.12.0"
+ktor = "3.6.0"
+mavenPublish = "0.37.0"
+okhttp = "5.5.1"
+quartzKmp = "2.2.0"
+# The JNI bindings must match the secp256k1-kmp version quartz is built against (its secp256k1Kmp).
+secp256k1KmpJni = "0.24.0"
+spotless = "8.10.4"
+sqlite = "2.7.1"
+
+[libraries]
+androidx-sqlite-bundled-jvm = { module = "androidx.sqlite:sqlite-bundled-jvm", version.ref = "sqlite" }
+fourkoma = { module = "cc.ekblad:4koma", version.ref = "fourkoma" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+quartz = { module = "com.vitorpamplona.quartz:quartz", version.ref = "quartzKmp" }
+secp256k1-kmp-jni-jvm = { module = "fr.acinq.secp256k1:secp256k1-kmp-jni-jvm", version.ref = "secp256k1KmpJni" }
+
+[plugins]
+diffplugSpotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
